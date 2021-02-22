@@ -1,0 +1,13 @@
+{
+  "body": {
+    "content": "ewogICAgImNhbXBhaWduX2lkIjogOSwKICAgICJhbW91bnQiOiA3MDAwMDAwCgp9",
+    "file": false,
+    "fileSize": false
+  },
+  "headers": {
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNH0.8G2GW-1NRG3ml6F0JpwRUJkdsQR9QL3VrKW6UVHFvlo"
+  },
+  "method": "POST",
+  "title": "transactions",
+  "url": "localhost:8080/api/v1/transactions"
+}
