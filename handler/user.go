@@ -56,13 +56,6 @@ func (h *userHandler) RegisterUser(c *gin.Context) {
 }
 
 func (h *userHandler) Login(c *gin.Context) {
-	// user memasukkan input (email & password)
-	// input ditangkap handler
-	// mapping dari input user ke input struct
-	// input struct passing service
-	// di service mencari dgn bantuan repository user dengan email x
-	// mencocokkan password
-
 	var input user.LoginInput
 
 	err := c.ShouldBindJSON(&input)
@@ -142,13 +135,6 @@ func (h *userHandler) CheckEmailAvailability(c *gin.Context) {
 }
 
 func (h *userHandler) UploadAvatar(c *gin.Context) {
-	// input dari user
-	// simpan gambarnya di folder "images/"
-	// di service kita panggil repo
-	// JWT (sementara hardcode, seakan2 user yg login ID =1)
-	// repo ambil data user yg ID = 1
-	// repo update data user simpan lokasi file
-
 	file, err := c.FormFile("avatar")
 	if err != nil {
 		data := gin.H{"is_uploaded": false}
@@ -186,6 +172,16 @@ func (h *userHandler) UploadAvatar(c *gin.Context) {
 
 	data := gin.H{"is_uploaded": true}
 	response := helper.APIResponse("Avatar successfuly uploaded", http.StatusOK, "success", data)
+
+	c.JSON(http.StatusOK, response)
+}
+
+func (h *userHandler) FetchUser(c *gin.Context) {
+	currentUser := c.MustGet("current_user").(user.User)
+
+	formatter := user.FormatUser(currentUser, "")
+
+	response := helper.APIResponse("Successfuly fetch user data", http.StatusOK, "success", formatter)
 
 	c.JSON(http.StatusOK, response)
 }
